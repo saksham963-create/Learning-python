@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Location Permission Test</title>
+</head>
+
+<body>
+    <h1>Location Permission Test</h1>
+
+    <p>
+        This page will request your location only after you click the button.
+    </p>
+
+    <button onclick="getLocation()">Allow Location Test</button>
+
+    <p id="result"></p>
+
+    <script>
+        function getLocation() {
+
+            document.getElementById("result").innerText =
+                "Requesting location permission...";
+
+            navigator.geolocation.getCurrentPosition(
+
+                function(position) {
+
+                    document.getElementById("result").innerText =
+                        "Permission granted!\n" +
+                        "Latitude: " +
+                        position.coords.latitude +
+                        "\nLongitude: " +
+                        position.coords.longitude;
+                },
+
+                function(error) {
+
+                    document.getElementById("result").innerText =
+                        "Location was not provided.\n" +
+                        "Error: " + error.message;
+                }
+            );
+        }
+    </script>
+
+</body>
+</html>
+
